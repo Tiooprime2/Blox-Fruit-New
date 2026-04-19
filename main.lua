@@ -2,9 +2,11 @@
 -- ║       TIOOHUB V2.1 — MAIN LOADER         ║
 -- ╚══════════════════════════════════════════╝
 
-local UI = loadstring(game:HttpGet(
-    "https://raw.githubusercontent.com/Tiooprime2/Blox-Fruit-New/refs/heads/main/SemuaUI/UI.lua"
-))()
+local BASE = "https://raw.githubusercontent.com/Tiooprime2/Blox-Fruit-New/refs/heads/main/"
 
--- Tambah modul fitur di sini nanti
--- task.spawn(function() pcall(loadstring(game:HttpGet("..."))().init, UI) end)
+local UI          = loadstring(game:HttpGet(BASE .. "SemuaUI/UI.lua"))()
+local EscapeDeath = loadstring(game:HttpGet(BASE .. "Features/EscapeDeath.lua"))()
+
+task.spawn(function()
+    pcall(EscapeDeath.build, UI.combatPage, UI)
+end)
